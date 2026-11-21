@@ -10,7 +10,7 @@
 // Play the game locally first with `node serve.ts`, then open
 // http://localhost:8080 in desktop Chrome.
 
-import { cpSync, existsSync, mkdirSync, rmSync, writeFileSync } from 'node:fs';
+import { cpSync, existsSync, mkdirSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { buildDossier } from './vendor/makefun-game.ts';
@@ -18,8 +18,6 @@ import { buildDossier } from './vendor/makefun-game.ts';
 const here = fileURLToPath(new URL('.', import.meta.url));
 const out = process.env.MAKEFUN_OUTPUT_DIR ?? '/output';
 
-// Start from a clean output directory so a stale file can never leak in.
-rmSync(out, { recursive: true, force: true });
 mkdirSync(out, { recursive: true });
 
 // The game itself: plain static files, no build step, no network request.
